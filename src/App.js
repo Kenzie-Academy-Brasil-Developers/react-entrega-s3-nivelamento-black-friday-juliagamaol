@@ -33,7 +33,7 @@ function App() {
     setProd([product])
     
 }
-const handleClick = productId =>{
+  const handleClick = productId =>{
     const productsOnCart = prod.find(item=>(item.id === productId))
     setCurrentSale([...currentSale, productsOnCart])
 } 
