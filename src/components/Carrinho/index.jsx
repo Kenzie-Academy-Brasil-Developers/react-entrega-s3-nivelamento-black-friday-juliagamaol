@@ -1,6 +1,6 @@
 import React from 'react'
 import './index.css'
-export default function Carrinho({currentSale}) {
+export default function Carrinho({currentSale,removeFromCart}) {
     const total = Math.round((currentSale.reduce((a,b)=>a+b.priceToBePaid,0))*100)/100
     return (
         <>
@@ -12,6 +12,7 @@ export default function Carrinho({currentSale}) {
                         <span><b>Preço:</b>R${item.price}</span>
                         <span><b>Valor do disconto:</b>R${item.valueOfDisc}</span>
                         <span><b>Preço a ser pago:</b>R${item.priceToBePaid}</span>
+                        <button onClick={()=>removeFromCart(item.id)}>Remover do carrinho</button>
                     </li>
                 ))}
 

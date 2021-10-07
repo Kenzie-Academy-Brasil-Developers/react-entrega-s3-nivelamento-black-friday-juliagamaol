@@ -15,7 +15,6 @@ function App() {
 
   const [prod, setProd] = useState([])
   const [currentSale, setCurrentSale] = useState([])
-
   const handleSubmit = () =>{
       const random = Math.floor(Math.random()*6 + 1)
       const productFiltred = products.filter(item=>(item.id === random))
@@ -37,12 +36,18 @@ function App() {
     const productsOnCart = prod.find(item=>(item.id === productId))
     setCurrentSale([...currentSale, productsOnCart])
 } 
-
+const removeFromCart = productId =>{
+  const removedOfCart = (el) => el.id !== productId
+  const index = currentSale.findIndex(removedOfCart)
+  const newList = currentSale.map(item=>(item))
+  newList.splice(index,1)
+  setCurrentSale(newList)
+}
   return (
     <div className="App">
         <GerarPromocao handleSubmit={handleSubmit}/>
-        <ProductList prod={prod} handleClick={handleClick}/>
-        <Carrinho currentSale={currentSale}/>
+        <ProductList prod={prod} handleClick={handleClick} removeFromCart={removeFromCart}/>
+        <Carrinho currentSale={currentSale} removeFromCart={removeFromCart}/>
 
     </div>
   );
