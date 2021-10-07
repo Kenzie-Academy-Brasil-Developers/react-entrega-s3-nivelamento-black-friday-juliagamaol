@@ -1,6 +1,14 @@
 import React from 'react'
 import './index.css'
-export default function Carrinho({currentSale,removeFromCart}) {
+export default function Carrinho({setCurrentSale,currentSale}) {
+    
+    const removeFromCart = productId =>{
+        const removedOfCart = (el) => el.id === productId
+        const index = currentSale.findIndex(removedOfCart)
+        const newList = currentSale.map(item=>(item))
+        newList.splice(index,1)
+        setCurrentSale(newList)
+      }
     const total = Math.round((currentSale.reduce((a,b)=>a+b.priceToBePaid,0))*100)/100
     return (
         <>
